@@ -1,13 +1,13 @@
-package com.example.scmall.product.webapi;
+package cn.tedu.csmall.product.webapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ScmallProductWebapiApplication {
+public class CsmallProductWebapiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ScmallProductWebapiApplication.class, args);
+        SpringApplication.run(CsmallProductWebapiApplication.class, args);
     }
 
 }
