@@ -8,6 +8,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <packaging>pom</packaging>
+
+    <!--当前Project的各子级Module-->
+    <modules>
+        <module>scmall-product-webapi</module>
+    </modules>
+
     <groupId>cn.tedu</groupId>
     <artifactId>csmall-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
