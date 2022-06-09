@@ -1,10 +1,10 @@
-package cn.tedu.csmall;
+package com.example.scmall.product.webapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CsmallServerApplicationTests {
+class ScmallProductWebapiApplicationTests {
 
     @Test
     void contextLoads() {
