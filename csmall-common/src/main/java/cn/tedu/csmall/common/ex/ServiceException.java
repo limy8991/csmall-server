@@ -1,4 +1,4 @@
-package com.example.csmall.common.ex;
+package cn.tedu.csmall.common.ex;
 
 public class ServiceException extends RuntimeException{
 }

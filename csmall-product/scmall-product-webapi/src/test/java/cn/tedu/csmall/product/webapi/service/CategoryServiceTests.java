@@ -1,6 +1,6 @@
 package cn.tedu.csmall.product.webapi.service;
 
-import com.example.csmall.common.ex.ServiceException;
+import cn.tedu.csmall.common.ex.ServiceException;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.product.service.ICategoryService;
 import org.junit.jupiter.api.Test;

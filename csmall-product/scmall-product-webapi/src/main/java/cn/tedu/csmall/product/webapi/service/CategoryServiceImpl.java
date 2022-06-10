@@ -6,7 +6,7 @@ import cn.tedu.csmall.pojo.entity.Category;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import cn.tedu.csmall.product.service.ICategoryService;
 import cn.tedu.csmall.product.webapi.mapper.CategoryMapper;
-import com.example.csmall.common.ex.ServiceException;
+import cn.tedu.csmall.common.ex.ServiceException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
