@@ -13,6 +13,7 @@
     <!--当前Project的各子级Module-->
     <modules>
         <module>scmall-product-webapi</module>
+        <module>csmall-product-service</module>
     </modules>
 
     <groupId>cn.tedu</groupId>

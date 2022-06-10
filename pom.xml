@@ -21,8 +21,10 @@
 
     <!--当前Project的各子级Module-->
     <modules>
+        <module>csmall-admin</module>
         <module>csmall-product</module>
         <module>csmall-pojo</module>
+        <module>csmall-common</module>
     </modules>
 
     <!-- 属性配置 -->
@@ -37,6 +39,23 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Csmall Product Service -->
+            <dependency>
+                <groupId>cn.tedu</groupId>
+                <artifactId>csmall-product-service</artifactId>
+                <version>${csmall.version}</version>
+            </dependency>
+            <!-- Csmall common -->
+            <dependency>
+                <groupId>cn.tedu</groupId>
+                <artifactId>csmall-product-common</artifactId>
+                <version>${csmall.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.tedu</groupId>
+                <artifactId>csmall-admin</artifactId>
+                <version>${csmall.version}</version>
+            </dependency>
             <dependency>
                 <groupId>cn.tedu</groupId>
                 <artifactId>csmall-pojo</artifactId>

@@ -1,4 +1,4 @@
-package cn.tedu.csmal.pojo.entity;
+package cn.tedu.csmall.pojo.entity;
 
 import lombok.Data;
 

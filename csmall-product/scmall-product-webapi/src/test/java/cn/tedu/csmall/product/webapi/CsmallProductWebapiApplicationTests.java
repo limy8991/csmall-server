@@ -1,9 +1,11 @@
 package cn.tedu.csmall.product.webapi;
 
+import cn.tedu.csmall.pojo.entity.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import javax.sql.DataSource;
 
@@ -15,6 +17,7 @@ public class CsmallProductWebapiApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
     @Test
@@ -24,5 +27,7 @@ public class CsmallProductWebapiApplicationTests {
             dataSource.getConnection();
         });
     }
+
+
 
 }
