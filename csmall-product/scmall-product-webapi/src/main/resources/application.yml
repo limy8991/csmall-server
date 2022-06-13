@@ -1,9 +1,0 @@
-spring:
-  profiles:
-    active: dev
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-# Mybatis相关配置
-mybatis:
-  # 用于配置SQL语句的XML文件的位置
-  mapper-locations: classpath:mapper/*.xml
