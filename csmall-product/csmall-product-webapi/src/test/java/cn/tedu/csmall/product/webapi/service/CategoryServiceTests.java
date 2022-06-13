@@ -23,16 +23,16 @@ public class CategoryServiceTests {
         // 测试数据
         CategoryAddNewDTO category = new CategoryAddNewDTO();
         category.setName("薯片");
-        category.setParentId(4L);
+        category.setParentId(0L);
         category.setIcon("未上传类别图标");
         category.setKeywords("未设置关键字");
         category.setSort(88);
         category.setIsDisplay(1);
         // 断言不会抛出异常
-        //assertDoesNotThrow(() -> {
-            // 执行测试
-            service.addNew(category);
-        //});
+        assertDoesNotThrow(() -> {
+        // 执行测试
+        service.addNew(category);
+        });
     }
 
     @Test
