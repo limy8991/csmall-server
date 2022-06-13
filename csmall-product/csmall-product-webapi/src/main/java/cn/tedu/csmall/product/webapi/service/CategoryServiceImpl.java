@@ -66,7 +66,7 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setGmtModified(now);
         // 调用categoryMapper.insert(Category)插入类别数据，获取返回的受影响的行数
         int rows = categoryMapper.insert(category);
-        // 判断返回的受影响的行数是否不为1
+        //  判断返回的受影响的行数是否不为1
         if (rows != 1) {
             // 是：抛出ServiceException
             throw new ServiceException(State.ERR_INSERT,
