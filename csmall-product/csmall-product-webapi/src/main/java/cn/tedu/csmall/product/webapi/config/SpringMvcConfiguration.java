@@ -1,7 +1,9 @@
 package cn.tedu.csmall.product.webapi.config;
 
 
+import cn.tedu.csmall.common.config.CsmallCommonConfiguration;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
