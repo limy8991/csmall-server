@@ -1,7 +1,10 @@
 package cn.tedu.csmall.product.service;
 
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
+import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 public interface ICategoryService {
@@ -12,5 +15,7 @@ public interface ICategoryService {
      */
     @Transactional
     void addNew(CategoryAddNewDTO categoryAddNewDTO);
+
+    List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
 }

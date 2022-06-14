@@ -5,6 +5,8 @@ import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 处理“类别”数据的持久层接口
  */
@@ -39,5 +41,8 @@ public interface CategoryMapper {
      * @return “类别”的简单信息
      */
     CategorySimpleVO getByName(String name);
+
+
+    List<CategorySimpleVO> listByParentId(Long parentId);
 
 }

@@ -4,6 +4,7 @@ import cn.tedu.csmall.common.ex.ServiceException;
 import cn.tedu.csmall.common.web.State;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.pojo.entity.Category;
+import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import cn.tedu.csmall.product.service.ICategoryService;
 import cn.tedu.csmall.product.webapi.mapper.CategoryMapper;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements ICategoryService {
@@ -85,6 +87,11 @@ public class CategoryServiceImpl implements ICategoryService {
                         "添加类别失败，服务器忙（" + State.ERR_UPDATE.getValue() + "），请稍后再次尝试！");
             }
         }
+    }
+
+    @Override
+    public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
+        return null;
     }
 
 }

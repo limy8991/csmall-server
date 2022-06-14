@@ -40,10 +40,27 @@
         where
             name=#{name}
     </select>
+    <select id="listByParentId" resultMap="SimpleListResultMap">
+        select
+        <include refid="SimpleListQueryFileds" />
+        from
+        parent_id=#{parentId} and enable=1 and is_display=1 order by sort desc, gmt_modified desc;
+    </select>
+    <sql id="SimpleListQueryFileds">
+        <if test="true">
+            id, name, sort, icon, is_parent
+        </if>
+    </sql>
 
     <sql id="SimpleQueryFields">
         <if test="true">
             id, depth, is_parent
+        </if>
+    </sql>
+
+    <sql id="SimpleListQueryFileds">
+        <if test="true">
+            id, name, sort, icon, is_parent
         </if>
     </sql>
 
