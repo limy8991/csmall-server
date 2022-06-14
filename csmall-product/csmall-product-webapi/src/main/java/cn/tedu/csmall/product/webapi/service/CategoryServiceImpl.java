@@ -89,9 +89,11 @@ public class CategoryServiceImpl implements ICategoryService {
         }
     }
 
+
     @Override
     public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
-        return null;
+        return categoryMapper.listByParentId(parentId);
     }
+
 
 }

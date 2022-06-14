@@ -33,6 +33,7 @@ public class CategoryController {
     @GetMapping("/list-by-parent")
     public JsonResult<List<CategorySimpleListItemVO>> listByParentId(Long parentId) {
         // 调用service并将结果封装到JsonResult中
-        return
+        List<CategorySimpleListItemVO> list = categoryService.listByParentId(parentId);
+        return JsonResult.ok(list);
     }
 }

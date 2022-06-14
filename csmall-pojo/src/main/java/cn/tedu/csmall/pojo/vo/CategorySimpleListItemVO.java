@@ -2,8 +2,10 @@ package cn.tedu.csmall.pojo.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class CategorySimpleListItemVO {
+public class CategorySimpleListItemVO implements Serializable {
 
     private Long id;
     private String name;

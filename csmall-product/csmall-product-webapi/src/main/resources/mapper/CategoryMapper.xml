@@ -10,10 +10,10 @@
             icon, enable, is_parent, is_display, gmt_create,
             gmt_modified
         ) values (
-            #{name}, #{parentId}, #{depth}, #{keywords}, #{sort},
-            #{icon}, #{enable}, #{isParent}, #{isDisplay}, #{gmtCreate},
-            #{gmtModified}
-        )
+                     #{name}, #{parentId}, #{depth}, #{keywords}, #{sort},
+                     #{icon}, #{enable}, #{isParent}, #{isDisplay}, #{gmtCreate},
+                     #{gmtModified}
+                 )
     </insert>
 
     <!-- int updateIsParentById(@Param("id") Long id, @Param("isParent") Integer isParent); -->
@@ -24,33 +24,34 @@
     <!-- CategorySimpleVO getById(Long id); -->
     <select id="getById" resultMap="SimpleResultMap">
         select
-            <include refid="SimpleQueryFields"/>
+        <include refid="SimpleQueryFields"/>
         from
-            pms_category
+        pms_category
         where
-            id=#{id}
+        id=#{id}
     </select>
 
     <!-- CategorySimpleVO getByName(String name); -->
     <select id="getByName" resultMap="SimpleResultMap">
         select
-            <include refid="SimpleQueryFields"/>
+        <include refid="SimpleQueryFields"/>
         from
-            pms_category
+        pms_category
         where
-            name=#{name}
+        name=#{name}
     </select>
+
+    <!-- List<CategorySimpleListItemVO> listByParentId(Long parentId); -->
     <select id="listByParentId" resultMap="SimpleListResultMap">
         select
-        <include refid="SimpleListQueryFileds" />
+        <include refid="SimpleListQueryFields" />
         from
-        parent_id=#{parentId} and enable=1 and is_display=1 order by sort desc, gmt_modified desc;
+        pms_category
+        where
+        parent_id=#{id} and enable=1 and is_display=1
+        order by
+        sort desc, gmt_modified desc
     </select>
-    <sql id="SimpleListQueryFileds">
-        <if test="true">
-            id, name, sort, icon, is_parent
-        </if>
-    </sql>
 
     <sql id="SimpleQueryFields">
         <if test="true">
@@ -58,15 +59,23 @@
         </if>
     </sql>
 
-    <sql id="SimpleListQueryFileds">
+    <resultMap id="SimpleResultMap" type="cn.tedu.csmall.pojo.vo.CategorySimpleVO">
+        <id column="id" property="id" />
+        <result column="depth" property="depth" />
+        <result column="is_parent" property="isParent" />
+    </resultMap>
+
+    <sql id="SimpleListQueryFields">
         <if test="true">
             id, name, sort, icon, is_parent
         </if>
     </sql>
 
-    <resultMap id="SimpleResultMap" type="cn.tedu.csmall.pojo.vo.CategorySimpleVO">
+    <resultMap id="SimpleListResultMap" type="cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO">
         <id column="id" property="id" />
-        <result column="depth" property="depth" />
+        <result column="name" property="name" />
+        <result column="sort" property="sort" />
+        <result column="icon" property="icon" />
         <result column="is_parent" property="isParent" />
     </resultMap>
 

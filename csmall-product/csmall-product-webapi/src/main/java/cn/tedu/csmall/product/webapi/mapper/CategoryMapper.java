@@ -1,6 +1,7 @@
 package cn.tedu.csmall.product.webapi.mapper;
 
 import cn.tedu.csmall.pojo.entity.Category;
+import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -9,6 +10,7 @@ import java.util.List;
 
 /**
  * 处理“类别”数据的持久层接口
+ * @author Lmy
  */
 @Repository
 public interface CategoryMapper {
@@ -42,7 +44,11 @@ public interface CategoryMapper {
      */
     CategorySimpleVO getByName(String name);
 
-
-    List<CategorySimpleVO> listByParentId(Long parentId);
+    /**
+     * 根据"父级"类别查询所有"子级"类别
+     * @param parentId
+     * @return
+     */
+    List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
 }

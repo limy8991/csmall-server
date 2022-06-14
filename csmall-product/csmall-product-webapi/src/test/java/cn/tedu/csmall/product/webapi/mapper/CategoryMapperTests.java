@@ -3,11 +3,14 @@ package cn.tedu.csmall.product.webapi.mapper;
 import cn.tedu.csmall.pojo.entity.Category;
 import static org.junit.jupiter.api.Assertions.*;
 
+import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
+
+import java.util.List;
 
 @SpringBootTest
 public class CategoryMapperTests {
@@ -113,6 +116,20 @@ public class CategoryMapperTests {
             // 断言查询结果为null
             assertNull(category);
         });
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testListByParentId() {
+        // 测试数据
+        Long parentId = 1L;
+        // 执行测试，获取查询结果
+        List<CategorySimpleListItemVO> list = mapper.listByParentId(parentId);
+        // 查看结果
+        System.out.println("查询结果数量：" + list.size());
+        for (CategorySimpleListItemVO item : list) {
+            System.out.println(item);
+        }
     }
 
 }
