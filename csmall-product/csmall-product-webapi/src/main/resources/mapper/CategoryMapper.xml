@@ -52,12 +52,35 @@
         order by
         sort desc, gmt_modified desc
     </select>
+    <select id="getDetailsById" resultMap="DetailsResultMap">
+        select <include refid="SimpleResultByIdFields" />
+    </select>
+
+    <sql id="SimpleResultByIdFields">
+        <if test="true">
+            id, depth, is_parent,depth,parent_id,
+            keywords,sort,enable,
+            enable,is_parent,is_display
+        </if>
+    </sql>
 
     <sql id="SimpleQueryFields">
         <if test="true">
             id, depth, is_parent
         </if>
     </sql>
+
+    <resultMap id="DetailsResultMap" type="cn.tedu.csmall.pojo.vo.CategoryDetailsVO">
+        <id column="id" property="id" />
+        <id column="name" property="name" />
+        <id column="depth" property="depth" />
+        <id column="parent_id" property="parentId" />
+        <id column="keywords" property="keywords" />
+        <id column="sort" property="sort" />
+        <id column="enable" property="enable" />
+        <id column="is_parent" property="isParent" />
+        <id column="is_display" property="isDisplay" />
+    </resultMap>
 
     <resultMap id="SimpleResultMap" type="cn.tedu.csmall.pojo.vo.CategorySimpleVO">
         <id column="id" property="id" />

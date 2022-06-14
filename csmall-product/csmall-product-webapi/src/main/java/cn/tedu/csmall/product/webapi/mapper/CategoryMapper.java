@@ -1,6 +1,7 @@
 package cn.tedu.csmall.product.webapi.mapper;
 
 import cn.tedu.csmall.pojo.entity.Category;
+import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import org.apache.ibatis.annotations.Param;
@@ -51,4 +52,10 @@ public interface CategoryMapper {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+    /**
+     * 按照id查询
+     * @param id
+     * @return
+     */
+    CategoryDetailsVO getDetailsById(Long id);
 }
