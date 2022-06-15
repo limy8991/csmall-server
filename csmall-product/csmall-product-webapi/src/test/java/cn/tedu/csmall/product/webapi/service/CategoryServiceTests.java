@@ -66,10 +66,10 @@ public class CategoryServiceTests {
     }
 
     @Test
-    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+   // @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
     public void testGetDetailsByIdSuccessfully() {
         // 测试数据
-        Long id = 1L;
+        Long id = 15L;
         // 断言不抛出异常
         assertDoesNotThrow(() -> {
             service.getDetailsById(id);

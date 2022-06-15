@@ -64,4 +64,6 @@ public interface CategoryMapper {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+    List<CategoryDetailsVO> list();
+
 }

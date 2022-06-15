@@ -63,6 +63,18 @@
         sort desc, gmt_modified desc
     </select>
 
+    <!--List<CategoryDetailsVO> list()-->
+    <select id="list" resultMap="DetailsResultMap">
+        select
+             <include refid="DetailsQueryFields" />
+        from
+             pms_category
+        where
+             enable=1 and is_display=1
+        order by
+             sort desc, gmt_modified desc
+    </select>
+
     <sql id="SimpleQueryFields">
         <if test="true">
             id, depth, is_parent

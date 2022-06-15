@@ -3,11 +3,12 @@ package cn.tedu.csmall.product.webapi.repository.impl;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.product.webapi.repository.ICategoryRedisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Repository
 public class CategoryRedisRepositoryImpl implements ICategoryRedisRepository {
@@ -16,9 +17,33 @@ public class CategoryRedisRepositoryImpl implements ICategoryRedisRepository {
     private RedisTemplate<String, Serializable> redisTemplate;
 
     @Override
+    public Boolean exists(Long id) {
+        String key = KEY_CATEGORY_ITEM_PREFIX + id;
+        return redisTemplate.hasKey(key);
+    }
+
+    @Override
+    public void saveEmptyValue(Long id) {
+        String key = KEY_CATEGORY_ITEM_PREFIX + id;
+        redisTemplate.opsForValue().set(key, null, 30, TimeUnit.SECONDS);
+    }
+
+    @Override
     public void save(CategoryDetailsVO category) {
         String key = KEY_CATEGORY_ITEM_PREFIX + category.getId();
         redisTemplate.opsForValue().set(key, category);
+    }
+
+    @Override
+    public void save(List<CategoryDetailsVO> categories) {
+        for (CategoryDetailsVO category : categories) {
+            redisTemplate.opsForList().rightPush(KEY_CATEGORY_LIST, category);
+        }
+    }
+
+    @Override
+    public Boolean deleteList() {
+        return redisTemplate.delete(KEY_CATEGORY_LIST);
     }
 
     @Override
