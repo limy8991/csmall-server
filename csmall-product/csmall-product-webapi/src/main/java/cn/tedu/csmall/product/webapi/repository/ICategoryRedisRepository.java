@@ -50,6 +50,8 @@ public interface ICategoryRedisRepository {
      */
     Boolean deleteList();
 
+    void deleteAllItem();
+
     /**
      * 根据类别id获取类别详情
      *
@@ -57,5 +59,7 @@ public interface ICategoryRedisRepository {
      * @return 匹配的类别详情，如果没有匹配的数据，则返回null
      */
     CategoryDetailsVO getDetailsById(Long id);
+
+
 
 }

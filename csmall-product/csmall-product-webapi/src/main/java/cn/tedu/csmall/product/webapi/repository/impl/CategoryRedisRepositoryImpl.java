@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Repository
@@ -39,6 +40,13 @@ public class CategoryRedisRepositoryImpl implements ICategoryRedisRepository {
         for (CategoryDetailsVO category : categories) {
             redisTemplate.opsForList().rightPush(KEY_CATEGORY_LIST, category);
         }
+    }
+
+    @Override
+    public void deleteAllItem() {
+        Set<String> keys = redisTemplate.keys(KEY_CATEGORY_ITEM_PREFIX + "*");
+        redisTemplate.delete(keys);
+
     }
 
     @Override

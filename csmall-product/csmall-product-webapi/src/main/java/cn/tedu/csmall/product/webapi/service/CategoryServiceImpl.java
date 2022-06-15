@@ -116,7 +116,7 @@ public class CategoryServiceImpl implements ICategoryService {
             CategoryDetailsVO cacheResult = categoryRedisRepository.getDetailsById(id);
             if (cacheResult == null) {
                 // -- 是：表示明确的存入了null值，则此id对应的数据确实不存在，则抛出异常
-                log.warn("在缓存中存在此id（）对应的Key，却是null值，则抛出异常", id);
+                log.warn("在缓存中存在此id（{}）对应的Key，却是null值，则抛出异常", id);
                 throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND,
                         "获取类别详情失败，尝试访问的数据不存在！");
             } else {
@@ -146,26 +146,31 @@ public class CategoryServiceImpl implements ICategoryService {
         log.debug("返回查询到数据：{}", dbResult);
         return dbResult;
     }
-    @Override
-    public void preloadCache() {
-        log.debug("删除缓存中的类别列表……");
-        categoryRedisRepository.deleteList();
-
-        log.debug("从数据库查询类别列表……");
-        List<CategoryDetailsVO> list = categoryMapper.list();
-        for (CategoryDetailsVO category : list) {
-            log.debug("查询结果：{}", category);
-        }
-
-        log.debug("将类别列表写入到Redis……");
-        categoryRedisRepository.save(list);
-        log.debug("将类别列表写入到Redis完成！");
-    }
 
     @Override
     public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
         return categoryMapper.listByParentId(parentId);
     }
 
+    @Override
+    public void preloadCache() {
+        log.debug("删除缓存中的类别列表……");
+        categoryRedisRepository.deleteList();
+        log.debug("删除缓存中的各独立的类别数据……");
+        categoryRedisRepository.deleteAllItem();
+
+        log.debug("从数据库查询类别列表……");
+        List<CategoryDetailsVO> list = categoryMapper.list();
+
+        for (CategoryDetailsVO category : list) {
+            log.debug("查询结果：{}", category);
+            log.debug("将当前类别存入到Redis：{}", category);
+            categoryRedisRepository.save(category);
+        }
+
+        log.debug("将类别列表写入到Redis……");
+        categoryRedisRepository.save(list);
+        log.debug("将类别列表写入到Redis完成！");
+    }
 
 }
