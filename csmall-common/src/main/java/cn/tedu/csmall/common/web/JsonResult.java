@@ -7,7 +7,9 @@ import java.io.Serializable;
 @Data
 public class JsonResult<T> implements Serializable {
 
-    // 状态码，例如：200
+    /**
+     * 状态码，例如：200
+     */
     private Integer state;
 
     // 消息，例如："登录失败，用户名不存在"

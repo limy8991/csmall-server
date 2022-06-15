@@ -67,6 +67,28 @@ public class CategoryServiceTests {
 
     @Test
     @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testGetDetailsByIdSuccessfully() {
+        // 测试数据
+        Long id = 1L;
+        // 断言不抛出异常
+        assertDoesNotThrow(() -> {
+            service.getDetailsById(id);
+        });
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql"})
+    public void testGetDetailsByIdFailBecauseNotFound() {
+        // 测试数据
+        Long id = -1L;
+        // 断言抛出异常
+        assertThrows(ServiceException.class, () -> {
+            service.getDetailsById(id);
+        });
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
     public void testListByParentId() {
         // 测试数据
         Long parentId = 1L;

@@ -70,6 +70,12 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
+            <!--redis-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-redis</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <!-- Mybatis Spring Boot：Mybatis及对Spring Boot的支持 -->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>

@@ -4,6 +4,7 @@ import cn.tedu.csmall.common.ex.ServiceException;
 import cn.tedu.csmall.common.web.State;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.pojo.entity.Category;
+import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleVO;
 import cn.tedu.csmall.product.service.ICategoryService;
@@ -19,7 +20,7 @@ import java.util.List;
 public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
-    CategoryMapper categoryMapper;
+    private CategoryMapper categoryMapper;
 
     @Override
     public void addNew(CategoryAddNewDTO categoryAddNewDTO) {
@@ -68,7 +69,7 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setGmtModified(now);
         // 调用categoryMapper.insert(Category)插入类别数据，获取返回的受影响的行数
         int rows = categoryMapper.insert(category);
-        //  判断返回的受影响的行数是否不为1
+        // 判断返回的受影响的行数是否不为1
         if (rows != 1) {
             // 是：抛出ServiceException
             throw new ServiceException(State.ERR_INSERT,
@@ -89,11 +90,19 @@ public class CategoryServiceImpl implements ICategoryService {
         }
     }
 
+    @Override
+    public CategoryDetailsVO getDetailsById(Long id) {
+        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+        if (category == null) {
+            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND,
+                    "获取类别详情失败，尝试访问的数据不存在！");
+        }
+        return category;
+    }
 
     @Override
     public List<CategorySimpleListItemVO> listByParentId(Long parentId) {
         return categoryMapper.listByParentId(parentId);
     }
-
 
 }
