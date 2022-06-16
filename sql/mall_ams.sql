@@ -126,5 +126,5 @@ insert into ams_login_log (admin_id, username, nickname, ip, user_agent, gmt_log
 (2, 'root', 'root', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15', DATE_SUB(NOW(), interval 12 hour)),
 (3, 'root', 'root', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15', NOW());
 
--- 查看数据表结构
+-- 查看数据表的结构
 desc ams_permission; desc ams_role; desc ams_role_permission; desc ams_admin; desc ams_admin_role; desc ams_login_log;

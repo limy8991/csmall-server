@@ -341,7 +341,7 @@ values (1, 1, '屏幕尺寸', '6.1', '寸'),
        (2, 3, '颜色', '白色', null),
        (2, 5, '运行内存', '8', 'GB');
 
--- 查看数据表结构
+-- 查看数据表的结构
 desc pms_album;
 desc pms_picture;
 desc pms_category;
