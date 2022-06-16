@@ -1,6 +1,7 @@
 package cn.tedu.csmall.passport.service;
 
 import cn.tedu.csmall.pojo.dto.AdminLoginDTO;
+import cn.tedu.csmall.pojo.vo.AdminLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,5 +32,6 @@ public class AdminServiceImpl implements IAdminService {
         String jwt = "This is a JWT.";
         return jwt;
     }
+
 
 }

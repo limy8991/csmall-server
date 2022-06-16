@@ -1,6 +1,7 @@
 package cn.tedu.csmall.product.service;
 
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
+import cn.tedu.csmall.pojo.vo.AdminLoginVO;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,9 +33,15 @@ public interface ICategoryService {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+    CategoryDetailsVO updateIsEnableById(Long id);
+
+
     /**
      * 预热类别数据的缓存
      */
     void preloadCache();
+
+
+
 
 }

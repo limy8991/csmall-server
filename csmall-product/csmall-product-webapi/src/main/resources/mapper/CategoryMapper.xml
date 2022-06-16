@@ -21,6 +21,11 @@
         update pms_category set is_parent=#{isParent} where id=#{id}
     </update>
 
+    <!--int updateById(Long id)-->
+    <update id="updateById">
+        update pms_category set enable=#{enable} where id=#{id}
+    </update>
+
     <!-- CategorySimpleVO getById(Long id); -->
     <select id="getById" resultMap="SimpleResultMap">
         select

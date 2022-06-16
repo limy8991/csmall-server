@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author Lmy
+ */
 @Data
 public class CategoryDetailsVO implements Serializable {
 

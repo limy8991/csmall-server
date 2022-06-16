@@ -70,4 +70,10 @@ public interface CategoryMapper {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
+
+    int updateIsEnableById(@Param("id") Long id, @Param("enable") Integer isEnable);
+
+
+
+
 }

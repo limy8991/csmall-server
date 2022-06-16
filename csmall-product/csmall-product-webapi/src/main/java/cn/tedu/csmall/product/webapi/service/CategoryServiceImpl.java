@@ -106,6 +106,7 @@ public class CategoryServiceImpl implements ICategoryService {
         // return category;
 
         // ===== 以下是新的业务，将从Redis中获取数据 =====
+
         log.debug("根据id（{}）获取类别详情……", id);
         // 从repository中调用方法，根据id获取缓存的数据
         // 判断缓存中是否存在与此id对应的key
@@ -175,4 +176,23 @@ public class CategoryServiceImpl implements ICategoryService {
         log.debug("将类别列表写入到Redis完成！");
     }
 
+
+    @Override
+    public CategoryDetailsVO updateIsEnableById(Long id) {
+
+        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+        if (category == null) {
+            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND,
+                    "获取类别详情失败，尝试访问的数据不存在！");
+        } else {
+            int result = category.getEnable();
+            if (result == 0) {
+                throw new ServiceException(State.ERR_CATEGORY_DISABLE,
+                        "未启用");
+            } else {
+                category.setEnable(0);
+            }
+        }
+        return category;
+    }
 }
