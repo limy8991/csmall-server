@@ -5,6 +5,9 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Lmy
+ */
 @Data
 public class AdminLoginVO implements Serializable {
     private Long id;
