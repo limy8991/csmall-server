@@ -1,5 +1,6 @@
 package cn.tedu.csmall.passport;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,11 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtTests {
-
+    String secretKey = "fjdasflkdjslkffdfadsjlkdsaf";
     @Test
     public void testGenerateJwt() {
         // 密钥
-        String secretKey = "fjdasflkdjslkffdfadsjlkdsaf";
+
 
         // Claims
         Map<String, Object> claims = new HashMap<>();
@@ -37,5 +38,15 @@ public class JwtTests {
 
         // eyJjdHkiOiJIUzI1NiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJuYW1lIjoi5pif5pifIiwiaWQiOjk1MjcsImV4cCI6MTY1NTM2NTY3N30.QwBYVgdkdibEpD-pjX4sKfNu3tw8hBLcJy4-UcN1F3c
         System.out.println(jwt);
+    }
+
+    @Test
+    public void testParseJwt() {
+        String jwt = "eyJjdHkiOiJIUzI1NiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJuYW1lIjoi5pif5pifIiwiaWQiOjk1MjcsImV4cCI6MTY1NTM2NzEwNH0.z1HFXQt_ldNPpTTdomjeCUNslDMsguYAQNwXx1DbQCs";
+        Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
+        Object id = claims.get("id");
+        Object name = claims.get("name");
+        System.out.println("name = " + name);
+        System.out.println("id = " + id);
     }
 }
