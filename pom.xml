@@ -24,7 +24,7 @@
         <module>csmall-product</module>
         <module>csmall-pojo</module>
         <module>csmall-common</module>
-        <module>csmall-admin</module>
+        <module>csmall-passport</module>
     </modules>
 
     <!-- 属性配置，主要配置各依赖项的版本号对应的“变量” -->
@@ -71,7 +71,13 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
-            <!--redis-->
+            <!-- Spring Boot Security：处理认证与授权 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- Spring Boot Redis：支持对Redis编程 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-redis</artifactId>
