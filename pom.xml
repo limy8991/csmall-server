@@ -36,6 +36,7 @@
         <lombok.version>1.18.22</lombok.version>
         <druid.version>1.1.20</druid.version>
         <csmall.version>0.0.1-SNAPSHOT</csmall.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <!-- 依赖管理，主要管理各依赖项的版本，使得子级Module添加依赖时不必指定版本 -->
@@ -58,6 +59,12 @@
                 <groupId>cn.tedu</groupId>
                 <artifactId>csmall-pojo</artifactId>
                 <version>${csmall.version}</version>
+            </dependency>
+            <!-- JJWT（Java JWT） -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
             <!-- Spring Boot Validation：验证请求参数的基本格式 -->
             <dependency>
