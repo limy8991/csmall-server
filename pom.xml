@@ -24,6 +24,7 @@
         <module>csmall-product</module>
         <module>csmall-pojo</module>
         <module>csmall-common</module>
+        <module>csmall-admin</module>
     </modules>
 
     <!-- 属性配置，主要配置各依赖项的版本号对应的“变量” -->
