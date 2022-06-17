@@ -37,6 +37,7 @@
         <druid.version>1.1.20</druid.version>
         <csmall.version>0.0.1-SNAPSHOT</csmall.version>
         <jjwt.version>0.9.1</jjwt.version>
+        <knife4j.version>2.0.9</knife4j.version>
     </properties>
 
     <!-- 依赖管理，主要管理各依赖项的版本，使得子级Module添加依赖时不必指定版本 -->
@@ -122,6 +123,12 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
                 <version>${spring-boot.version}</version>
+            </dependency>
+            <!--Knife4j在线api文档-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

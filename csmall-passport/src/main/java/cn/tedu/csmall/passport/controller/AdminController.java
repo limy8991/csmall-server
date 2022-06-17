@@ -1,8 +1,10 @@
 package cn.tedu.csmall.passport.controller;
 
+import cn.tedu.csmall.common.web.JsonResult;
 import cn.tedu.csmall.passport.service.IAdminService;
 import cn.tedu.csmall.pojo.dto.AdminLoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,11 +16,18 @@ public class AdminController {
     @Autowired
     private IAdminService adminService;
 
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "hello~~";
+    }
+
+
     //http://localhost:8080/admins/login?username=root&password=123456
 
     @RequestMapping("/login")
-    public String login(AdminLoginDTO adminLoginDTO) {
+    public JsonResult<String> login(AdminLoginDTO adminLoginDTO) {
+
         String jwt = adminService.login(adminLoginDTO);
-        return jwt;
+        return JsonResult.ok(jwt);
     }
 }
