@@ -4,6 +4,7 @@ import cn.tedu.csmall.common.web.JsonResult;
 import cn.tedu.csmall.passport.service.IAdminService;
 import cn.tedu.csmall.pojo.dto.AdminLoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ public class AdminController {
     private IAdminService adminService;
 
     @GetMapping("/hello")
+    @PreAuthorize("hasAuthority('/ams/admin/read')")
     public String sayHello() {
         return "hello~~";
     }

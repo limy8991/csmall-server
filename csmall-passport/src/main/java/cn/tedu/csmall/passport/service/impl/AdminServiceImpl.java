@@ -1,6 +1,7 @@
 package cn.tedu.csmall.passport.service;
 
 import cn.tedu.csmall.pojo.dto.AdminLoginDTO;
+import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,9 +44,10 @@ public class AdminServiceImpl implements IAdminService {
         // Claims
         User user = (User) authenticate.getPrincipal();
         System.out.println("从认证结果中获取Principal=" + user.getClass().getName());
+        // 注意：先将permissions转换成JSON字符串再写入
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", user.getUsername());
-        claims.put("permissions", user.getAuthorities());
+        claims.put("permissions", JSON.toJSONString(user.getAuthorities()));
         System.out.println("即将向JWT中写入数据=" + claims);
 
         // JWT的组成部分：Header（头），Payload（载荷），Signature（签名）

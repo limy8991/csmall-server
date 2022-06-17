@@ -5,16 +5,19 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+@SpringBootTest
 public class JwtTests {
 
     // 密钥
+    @Value("${csmall.jwt.secret-key}")
     String secretKey = "fgfdsfadsfadsafdsafdsfadsfadsfdsafdasfdsafdsafdsafds4rttrefds";
 
     @Test
@@ -45,7 +48,8 @@ public class JwtTests {
 
     @Test
     public void testParseJwt() {
-        String jwt ="eyJjdHkiOiJIUzI1NiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJwZXJtaXNzaW9ucyI6W3siYXV0aG9yaXR5IjoiL2Ftcy9hZG1pbi9kZWxldGUifSx7ImF1dGhvcml0eSI6Ii9hbXMvYWRtaW4vcmVhZCJ9LHsiYXV0aG9yaXR5IjoiL2Ftcy9hZG1pbi91cGRhdGUifSx7ImF1dGhvcml0eSI6Ii9wbXMvcHJvZHVjdC9kZWxldGUifSx7ImF1dGhvcml0eSI6Ii9wbXMvcHJvZHVjdC9yZWFkIn0seyJhdXRob3JpdHkiOiIvcG1zL3Byb2R1Y3QvdXBkYXRlIn1dLCJleHAiOjE2NTU0MzE5MTUsInVzZXJuYW1lIjoicm9vdCJ9.J_FCacI9O5CwLFrAOfGbluKZw-IHkGd7lJAgJaub5iE";
+        String jwt = "eyJjdHkiOiJIUzI1NiIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJwZXJtaXNzaW9ucyI6W3siYXV0aG9yaXR5IjoiL2Ftcy9hZG1pbi9kZWxldGUifSx7ImF1dGhvcml0eSI6Ii9hbXMvYWRtaW4vcmVhZCJ9LHsiYXV0aG9yaXR5IjoiL2Ftcy9hZG1pbi91cGRhdGUifSx7ImF1dGhvcml0eSI6Ii9wbXMvcHJvZHVjdC9kZWxldGUifSx7ImF1dGhvcml0eSI6Ii9wbXMvcHJvZHVjdC9yZWFkIn0seyJhdXRob3JpdHkiOiIvcG1zL3Byb2R1Y3QvdXBkYXRlIn1dLCJleHAiOjE2NTU0NDY0NjQsInVzZXJuYW1lIjoicm9vdCJ9.cwl_MM_QpuVyi6VgJ10BCuC1OvbYUbzmIRSxWg4FpNo";
+
         Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt).getBody();
 
         String username = claims.get("username").toString();
@@ -53,6 +57,11 @@ public class JwtTests {
 
         System.out.println("username=" + username);
         System.out.println("permissions=" + permissions);
+    }
+
+    @Test
+    public void testGetSecretKey() {
+        System.out.println("secretKey = " + secretKey);
     }
 
 }

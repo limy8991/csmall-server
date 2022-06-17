@@ -38,6 +38,7 @@
         <csmall.version>0.0.1-SNAPSHOT</csmall.version>
         <jjwt.version>0.9.1</jjwt.version>
         <knife4j.version>2.0.9</knife4j.version>
+        <fastjson.version>1.2.75</fastjson.version>
     </properties>
 
     <!-- 依赖管理，主要管理各依赖项的版本，使得子级Module添加依赖时不必指定版本 -->
@@ -129,6 +130,12 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
+            </dependency>
+            <!--fastjson, 实现JSON的读写-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
