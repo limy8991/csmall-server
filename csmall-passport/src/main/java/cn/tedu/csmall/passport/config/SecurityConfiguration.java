@@ -8,9 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-/**
- * @author Lmy
- */
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -22,27 +19,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManager();
+        return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //禁用防跨域攻击
+        // 禁用防跨域攻击
         http.csrf().disable();
 
-        //URL白名单
-        String[] urls = {"/admins/login"};
-        //对请求需要授权才可以访问
-        http.authorizeRequests()
-                //匹配一些路径
-                .antMatchers(urls)
-                //允许直接访问
-                .permitAll()
-                //匹配除了以上配置的其他请求
-                .anyRequest()
-                //都需要认证
-                .authenticated();
+        // URL白名单
+        String[] urls = {
+                "/admins/login"
+        };
 
-
+        // 配置各请求路径的认证与授权
+        http.authorizeRequests() // 请求需要授权才可以访问
+                .antMatchers(urls) // 匹配一些路径
+                .permitAll() // 允许直接访问（不需要经过认证和授权）
+                .anyRequest() // 匹配除了以上配置的其它请求
+                .authenticated(); // 都需要认证
     }
 }

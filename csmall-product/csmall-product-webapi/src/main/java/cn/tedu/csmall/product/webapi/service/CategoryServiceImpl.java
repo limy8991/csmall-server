@@ -190,9 +190,9 @@ public class CategoryServiceImpl implements ICategoryService {
                 throw new ServiceException(State.ERR_CATEGORY_DISABLE,
                         "未启用");
             } else {
-                category.setEnable(0);
+                return category;
             }
         }
-        return category;
+
     }
 }

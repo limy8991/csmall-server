@@ -4,6 +4,7 @@ import cn.tedu.csmall.common.ex.ServiceException;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.product.service.ICategoryService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -99,6 +100,17 @@ public class CategoryServiceTests {
         for (CategorySimpleListItemVO item : list) {
             System.out.println(item);
         }
+    }
+
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testIsEnableSuccessfully() {
+        Long id = 1L;
+
+        Assertions.assertDoesNotThrow(()->{
+            service.updateIsEnableById(id);
+        });
     }
 
 }
