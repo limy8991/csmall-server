@@ -17,7 +17,8 @@ public class RedisConfiguration {
         RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setValueSerializer(RedisSerializer.json()); // 值(Value)使用JSON
+        // 值(Value)使用JSON
+        redisTemplate.setValueSerializer(RedisSerializer.json());
         return redisTemplate;
     }
 

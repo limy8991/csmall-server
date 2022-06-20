@@ -67,14 +67,14 @@ public class CategoryServiceTests {
     }
 
     @Test
-    //@Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
     public void testGetDetailsByIdSuccessfully() {
         // 测试数据
-        Long id = 16000L;
+        Long id = 1L;
         // 断言不抛出异常
-        // assertDoesNotThrow(() -> {
+         assertDoesNotThrow(() -> {
         service.getDetailsById(id);
-        // });
+         });
     }
 
     @Test
@@ -103,13 +103,29 @@ public class CategoryServiceTests {
     }
 
 
+
+
     @Test
     @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
-    public void testIsEnableSuccessfully() {
-        Long id = 1L;
+    public void testUpdateEnableSuccessfully(){
+        Long id  = 2L;
+        assertDoesNotThrow(()->{
+            service.updateEnableById(id);
+        });
+    }
+    @Test
+    public void testUpdateEnaleFailBecauseIsDisable(){
+        Long id  = 1L;
+        assertThrows(ServiceException.class,()->{
+            service.updateEnableById(id);
+        });
+    }
 
-        Assertions.assertDoesNotThrow(()->{
-            service.updateIsEnableById(id);
+    @Test
+    public void testUpdateEnableFailBecauseNotFound(){
+        Long id  = -1L;
+        assertThrows(ServiceException.class,()->{
+            service.updateEnableById(id);
         });
     }
 

@@ -12,7 +12,9 @@ public class JsonResult<T> implements Serializable {
      */
     private Integer state;
 
-    // 消息，例如："登录失败，用户名不存在"
+    /**
+     * 消息，例如："登录失败，用户名不存在"
+     */
     private String message;
 
     // 数据
@@ -21,9 +23,6 @@ public class JsonResult<T> implements Serializable {
     private JsonResult() {}
 
     public static JsonResult<Void> ok() {
-        // JsonResult jsonResult = new JsonResult();
-        // jsonResult.setState(1);
-        // return jsonResult;
         return ok(null);
     }
 

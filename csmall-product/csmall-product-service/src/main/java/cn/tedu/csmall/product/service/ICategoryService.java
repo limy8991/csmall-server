@@ -1,6 +1,7 @@
 package cn.tedu.csmall.product.service;
 
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
+import cn.tedu.csmall.pojo.dto.CategoryUpdateDTO;
 import cn.tedu.csmall.pojo.vo.AdminLoginVO;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
@@ -33,7 +34,24 @@ public interface ICategoryService {
      */
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
-    CategoryDetailsVO updateIsEnableById(Long id);
+    /**
+     * 根据id 修改是否禁用
+     * @param id
+     */
+    void updateEnableById(Long id);
+
+    /**
+     * 根据id 修改隐藏
+     * @param id
+     */
+    void updateDisplayById(Long id);
+
+    void deleteById(Long id);
+
+    void updateCategoryById(Long id, CategoryUpdateDTO categoryUpdateDTO);
+
+
+
 
 
     /**

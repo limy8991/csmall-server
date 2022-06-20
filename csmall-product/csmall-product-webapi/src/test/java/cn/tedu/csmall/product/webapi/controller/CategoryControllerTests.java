@@ -210,4 +210,58 @@ public class CategoryControllerTests {
                         MockMvcResultHandlers.print()); // 打印日志
     }
 
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testUpdateDisableByIdSuccessfully() throws Exception {
+        // /{id}/update-disable-by-id
+        Long id = 1L;
+        String url = "/categories/"+id+"/update-disable-by-id";
+        mockMvc.perform( // 执行发出请求
+                MockMvcRequestBuilders.get(url) // 根据请求方式决定调用的方法
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED) // 请求数据的文档类型，例如：application/json; charset=utf-8
+                        .accept(MediaType.APPLICATION_JSON)) // 接收的响应结果的文档类型，注意：perform()方法到此结束
+                .andExpect( // 预判结果，类似断言
+                        MockMvcResultMatchers
+                                .jsonPath("state") // 预判响应的JSON结果中将有名为state的属性
+                                .value(State.OK.getValue())) // 预判响应的JSON结果中名为state的属性的值，注意：andExpect()方法到此结束
+                .andDo( // 需要执行某任务
+                        MockMvcResultHandlers.print()); // 打印日志
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_disable_data.sql"})
+    public void testUpdateDisableByIdFailBecauseIsDisable() throws Exception {
+        // /{id}/update-disable-by-id
+        Long id = 2L;
+        String url = "/categories/"+id+"/update-disable-by-id";
+        mockMvc.perform( // 执行发出请求
+                MockMvcRequestBuilders.get(url) // 根据请求方式决定调用的方法
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED) // 请求数据的文档类型，例如：application/json; charset=utf-8
+                        .accept(MediaType.APPLICATION_JSON)) // 接收的响应结果的文档类型，注意：perform()方法到此结束
+                .andExpect( // 预判结果，类似断言
+                        MockMvcResultMatchers
+                                .jsonPath("state") // 预判响应的JSON结果中将有名为state的属性
+                                .value(State.ERR_CATEGORY_UPDATE.getValue())) // 预判响应的JSON结果中名为state的属性的值，注意：andExpect()方法到此结束
+                .andDo( // 需要执行某任务
+                        MockMvcResultHandlers.print()); // 打印日志
+    }
+
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testUpdateDisableByIdFailBecauseNutFound() throws Exception {
+        // /{id}/update-disable-by-id
+        Long id = -1L;
+        String url = "/categories/"+id+"/update-disable-by-id";
+        mockMvc.perform( // 执行发出请求
+                MockMvcRequestBuilders.get(url) // 根据请求方式决定调用的方法
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED) // 请求数据的文档类型，例如：application/json; charset=utf-8
+                        .accept(MediaType.APPLICATION_JSON)) // 接收的响应结果的文档类型，注意：perform()方法到此结束
+                .andExpect( // 预判结果，类似断言
+                        MockMvcResultMatchers
+                                .jsonPath("state") // 预判响应的JSON结果中将有名为state的属性
+                                .value(State.ERR_CATEGORY_NOT_FOUND.getValue())) // 预判响应的JSON结果中名为state的属性的值，注意：andExpect()方法到此结束
+                .andDo( // 需要执行某任务
+                        MockMvcResultHandlers.print()); // 打印日志
+    }
+
 }

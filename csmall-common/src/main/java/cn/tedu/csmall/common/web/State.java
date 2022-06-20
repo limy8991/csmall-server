@@ -21,9 +21,16 @@ public enum State {
      */
     ERR_CATEGORY_NOT_FOUND(40101),
     /**
-     * 类别未找到
+     * 类别禁用
      */
     ERR_CATEGORY_DISABLE(40102),
+
+    /**
+     * 更新失败
+     */
+    ERR_CATEGORY_UPDATE (40103),
+    ERR_CATEGORY_DELETE(40104),
+
     /**
      * 客户端引起的--JWT--过期
      */
@@ -48,6 +55,8 @@ public enum State {
      * 服务端引起的--服务器内部错误
      */
     ERR_INTERNAL_SERVER_ERROR(50100);
+
+
 
     private Integer value;
 

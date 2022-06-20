@@ -3,6 +3,7 @@ package cn.tedu.csmall.product.webapi.service;
 import cn.tedu.csmall.common.ex.ServiceException;
 import cn.tedu.csmall.common.web.State;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
+import cn.tedu.csmall.pojo.dto.CategoryUpdateDTO;
 import cn.tedu.csmall.pojo.entity.Category;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
@@ -178,21 +179,73 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     @Override
-    public CategoryDetailsVO updateIsEnableById(Long id) {
-
-        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
-        if (category == null) {
-            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND,
-                    "获取类别详情失败，尝试访问的数据不存在！");
-        } else {
-            int result = category.getEnable();
-            if (result == 0) {
-                throw new ServiceException(State.ERR_CATEGORY_DISABLE,
-                        "未启用");
+    public void updateEnableById(Long id) {
+        if (categoryRedisRepository.exists(id)) {
+            CategoryDetailsVO queryResult = categoryRedisRepository.getDetailsById(id);
+            if (queryResult.getEnable() == 0) {
+                throw new ServiceException(State.ERR_CATEGORY_UPDATE, "该类别已被禁用!");
             } else {
-                return category;
+                categoryMapper.updateEnableById(id);
+            }
+
+        } else {
+            CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+            if (category == null) {
+                throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND, "查询的类别不存在");
+            } else if (category != null && category.getEnable() == 0) {
+                throw new ServiceException(State.ERR_CATEGORY_UPDATE, "该类别已被禁用!");
+            } else {
+                categoryMapper.updateEnableById(id);
             }
         }
+    }
 
+    @Override
+    public void updateDisplayById(Long id) {
+        if (categoryRedisRepository.exists(id)) {
+            CategoryDetailsVO queryResult = categoryRedisRepository.getDetailsById(id);
+            if (queryResult.getIsDisplay() == 0) {
+                throw new ServiceException(State.ERR_CATEGORY_UPDATE, "该类别已被禁用!");
+            } else {
+                categoryMapper.updateDisplayById(id);
+            }
+
+        } else {
+            CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+            if (category == null) {
+                throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND, "查询的类别不存在");
+            } else if (category != null && category.getEnable() == 0) {
+                throw new ServiceException(State.ERR_CATEGORY_UPDATE, "该类别已被禁用!");
+            } else {
+                categoryMapper.updateDisplayById(id);
+            }
+        }
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+        if (category == null) {
+            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND, "类别不存在");
+        } else {
+            Long parentId = category.getParentId();
+            categoryMapper.deleteById(id);
+            List<CategoryDetailsVO> detailsByParentId = categoryMapper.getByParentId(parentId);
+            if(detailsByParentId.size() == 0){
+                categoryMapper.updateIsParentById(parentId,0);
+            }
+        }
+    }
+
+    @Override
+    public void updateCategoryById(Long id, CategoryUpdateDTO categoryUpdateDTO) {
+        CategoryDetailsVO category = categoryMapper.getDetailsById(id);
+        if (category == null) {
+            throw new ServiceException(State.ERR_CATEGORY_NOT_FOUND, "类别不存在");
+        } else if (categoryMapper.getByName(category.getName()) != null) {
+            throw new ServiceException(State.ERR_CATEGORY_UPDATE, "类别被占用");
+        }else {
+            categoryMapper.updateCategoryById(id, categoryUpdateDTO);
+        }
     }
 }

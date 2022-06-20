@@ -159,5 +159,18 @@ public class CategoryMapperTests {
             assertNull(category);
         });
     }
+    @Test
+    @Sql({"classpath:truncate.sql", "classpath:insert_data.sql"})
+    public void testUpdateEnableById() {
+        // 测试数据
+        Long id = 1L;
+        // 断言不会抛出异常
+        assertDoesNotThrow(() -> {
+            // 执行测试
+            int rows = mapper.updateEnableById(id);
+            // 断言受影响的行数为0
+            assertEquals(1, rows);
+        });
+    }
 
 }

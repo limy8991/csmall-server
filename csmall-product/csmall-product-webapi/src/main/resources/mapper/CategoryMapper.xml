@@ -22,9 +22,25 @@
     </update>
 
     <!--int updateById(Long id)-->
-    <update id="updateById">
-        update pms_category set enable=#{enable} where id=#{id}
+    <update id="updateEnableById">
+        update pms_category set enable=0 where id=#{id}
     </update>
+
+    <update id="updateDisplayById">
+        update pms_category set is_display=0 where id=#{id}
+    </update>
+    <update id="updateCategoryById">
+        update pms_category set name=#{name},keywords=#{keywords},icon=#{icon}
+        where id=#{id}
+        order by
+            sort desc
+    </update>
+    <delete id="deleteById">
+        delete
+        from pms_category
+        where id = #{id}
+    </delete>
+
 
     <!-- CategorySimpleVO getById(Long id); -->
     <select id="getById" resultMap="SimpleResultMap">
@@ -79,10 +95,18 @@
         order by
         sort desc, gmt_modified desc
     </select>
+    <select id="getByParentId" resultType="cn.tedu.csmall.pojo.vo.CategoryDetailsVO">
+        select
+        <include refid="DetailsQueryFields"/>
+        from
+        pms_category
+        where
+        parent_id=#{id}
+    </select>
 
     <sql id="SimpleQueryFields">
         <if test="true">
-            id, depth, is_parent
+            id, depth, is_parent,enable
         </if>
     </sql>
 

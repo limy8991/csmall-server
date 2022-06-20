@@ -24,6 +24,7 @@ import java.util.List;
  * 并添加到Spring Security的上下文中
  * 以致于Spring Security后续的组件（包括过滤器等）能从上下文中获取此用户的信息
  * 从而验证是否已经登录、是否具有权限等
+ * @author Lmy
  */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter implements JwtConst{
@@ -51,7 +52,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter implements Jwt
             // 不存在jwt数据，则放行，后续还有其它过滤器及相关组件进行其它的处理，例如未登录则要求登录等
             // 此处不宜直接阻止运行，因为“登录”、“注册”等请求本应该没有jwt数据
             System.out.println("请求头中无JWT数据，当前过滤器将放行");
-            filterChain.doFilter(request, response); // 继续执行过滤器链中后续的过滤器
+            // 继续执行过滤器链中后续的过滤器
+            filterChain.doFilter(request, response);
             return; // 必须
         }
 

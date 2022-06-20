@@ -4,6 +4,9 @@ import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 
 import java.util.List;
 
+/**
+ * @author Lmy
+ */
 public interface ICategoryRedisRepository {
 
     /**

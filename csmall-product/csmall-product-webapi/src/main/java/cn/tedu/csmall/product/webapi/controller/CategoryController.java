@@ -2,6 +2,7 @@ package cn.tedu.csmall.product.webapi.controller;
 
 import cn.tedu.csmall.common.web.JsonResult;
 import cn.tedu.csmall.pojo.dto.CategoryAddNewDTO;
+import cn.tedu.csmall.pojo.dto.CategoryUpdateDTO;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
 import cn.tedu.csmall.product.service.ICategoryService;
@@ -40,5 +41,28 @@ public class CategoryController {
         List<CategorySimpleListItemVO> list = categoryService.listByParentId(parentId);
         return JsonResult.ok(list);
     }
+
+    @GetMapping("/{id}/update-disable-by-id")
+    public JsonResult<Void> updateEnableById(@PathVariable Long id) {
+        categoryService.updateEnableById(id);
+        return JsonResult.ok();
+    }
+    @GetMapping("/{id}/update-display-by-id")
+    public JsonResult<Void> updateDisplayById(@PathVariable Long id) {
+        categoryService.updateDisplayById(id);
+        return JsonResult.ok();
+    }
+    @GetMapping("/{id}/deleye-by-id")
+    public JsonResult<Void> deleteById(@PathVariable Long id) {
+        categoryService.deleteById(id);
+        return JsonResult.ok();
+    }
+
+    @PostMapping("/{id}/update-category")
+    public JsonResult<Void> updateCategory(@PathVariable Long id) {
+        categoryService.deleteById(id);
+        return JsonResult.ok();
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package cn.tedu.csmall.product.webapi.mapper;
 
+import cn.tedu.csmall.pojo.dto.CategoryUpdateDTO;
 import cn.tedu.csmall.pojo.entity.Category;
 import cn.tedu.csmall.pojo.vo.CategoryDetailsVO;
 import cn.tedu.csmall.pojo.vo.CategorySimpleListItemVO;
@@ -11,6 +12,7 @@ import java.util.List;
 
 /**
  * 处理“类别”数据的持久层接口
+ * @author Lmy
  */
 @Repository
 public interface CategoryMapper {
@@ -71,8 +73,15 @@ public interface CategoryMapper {
     List<CategorySimpleListItemVO> listByParentId(Long parentId);
 
 
-    int updateIsEnableById(@Param("id") Long id, @Param("enable") Integer isEnable);
+    int updateEnableById(Long id);
 
+    int updateDisplayById(Long id);
+
+    int deleteById(Long id);
+
+    List<CategoryDetailsVO> getByParentId(Long id);
+
+    int updateCategoryById(Long id, CategoryUpdateDTO categoryUpdateDTO);
 
 
 
